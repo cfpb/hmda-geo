@@ -17,9 +17,9 @@ import org.slf4j.LoggerFactory
 import com.typesafe.scalalogging.Logger
 import spray.json._
 import hmda.pip.model.Status
-import hmda.pip.protocol.PipProtocol
+import hmda.pip.protocol.PipJsonProtocol
 
-trait Service extends PipProtocol {
+trait Service extends PipJsonProtocol {
   implicit val system: ActorSystem
 
   implicit def executor: ExecutionContextExecutor
