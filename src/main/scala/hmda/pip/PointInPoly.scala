@@ -8,7 +8,7 @@ import akka.stream.ActorMaterializer
 import com.typesafe.config.ConfigFactory
 
 object PointInPoly extends App with Service {
-  override implicit val system = ActorSystem("grasshopper-addresspoints")
+  override implicit val system = ActorSystem("hmda-pip")
   override implicit val executor = system.dispatcher
   override implicit val materializer = ActorMaterializer()
 

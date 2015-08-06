@@ -28,8 +28,8 @@ object PipBuild extends Build {
 
   val akkaHttpDeps = akkaDeps ++ Seq(akkaHttp, akkaHttpTestkit, akkaHttpJson, logback, scalaLogging)
 
-  lazy val microservice = Project(
-    "microservice-template",
+  lazy val hmdaPip  = Project(
+    "hmda-pip",
     file("."),
     settings = buildSettings ++ Revolver.settings ++ Seq(libraryDependencies ++= akkaHttpDeps, resolvers ++= repos)
   )
