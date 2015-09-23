@@ -1,10 +1,10 @@
-package hmda.pip.protocol
+package hmda.geo.protocol
 
 import java.net.InetAddress
 import java.util.Calendar
 import org.scalatest._
 import spray.json._
-import hmda.pip.model.{ Status, PipResult }
+import hmda.geo.model.{ Status, PipResult }
 
 class PipJsonProtocolSpec extends FlatSpec with MustMatchers with PipJsonProtocol {
 

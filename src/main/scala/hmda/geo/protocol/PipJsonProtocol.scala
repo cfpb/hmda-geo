@@ -1,6 +1,6 @@
-package hmda.pip.protocol
+package hmda.geo.protocol
 
-import hmda.pip.model.{ Status, PipResult }
+import hmda.geo.model.{ Status, PipResult }
 import spray.json.DefaultJsonProtocol
 
 trait PipJsonProtocol extends DefaultJsonProtocol {

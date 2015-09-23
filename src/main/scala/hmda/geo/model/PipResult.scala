@@ -1,3 +1,3 @@
-package hmda.pip.model
+package hmda.geo.model
 
 case class PipResult(isContained: Boolean)

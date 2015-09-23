@@ -1,4 +1,4 @@
-package hmda.pip
+package hmda.geo
 
 import hmda.pip.api.Service
 import akka.actor.ActorSystem
@@ -7,8 +7,8 @@ import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import com.typesafe.config.ConfigFactory
 
-object PointInPoly extends App with Service {
-  override implicit val system = ActorSystem("hmda-pip")
+object HMDAGeo extends App with Service {
+  override implicit val system = ActorSystem("hmda-geo")
   override implicit val executor = system.dispatcher
   override implicit val materializer = ActorMaterializer()
 
@@ -17,8 +17,8 @@ object PointInPoly extends App with Service {
 
   val http = Http(system).bindAndHandle(
     routes,
-    config.getString("hmda.pip.http.interface"),
-    config.getInt("hmda.pip.http.port")
+    config.getString("hmda.geo.http.interface"),
+    config.getInt("hmda.geo.http.port")
   )
 
   sys.addShutdownHook {

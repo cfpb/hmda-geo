@@ -16,8 +16,8 @@ import akka.http.scaladsl.server.StandardRoute
 import org.slf4j.LoggerFactory
 import com.typesafe.scalalogging.Logger
 import spray.json._
-import hmda.pip.model.Status
-import hmda.pip.protocol.PipJsonProtocol
+import hmda.geo.model.Status
+import hmda.geo.protocol.PipJsonProtocol
 
 trait Service extends PipJsonProtocol {
   implicit val system: ActorSystem
