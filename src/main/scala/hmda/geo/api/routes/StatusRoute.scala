@@ -5,7 +5,6 @@ import java.time.Instant
 import akka.actor.ActorSystem
 import com.typesafe.config.Config
 import akka.stream.ActorMaterializer
-import scala.concurrent.ExecutionContextExecutor
 import akka.event.LoggingAdapter
 import akka.http.scaladsl.coding.{ Deflate, Gzip, NoCoding }
 import akka.http.scaladsl.marshalling.ToResponseMarshallable
@@ -19,19 +18,9 @@ import spray.json._
 import hmda.geo.model.Status
 import hmda.geo.protocol.PipJsonProtocol
 
-trait StatusRoute extends PipJsonProtocol {
+trait StatusRoute extends BaseRoute with PipJsonProtocol {
 
-  implicit val system: ActorSystem
-
-  implicit def executor: ExecutionContextExecutor
-
-  implicit val materializer: ActorMaterializer
-
-  def config: Config
-
-  val logger: LoggingAdapter
-
-  lazy val log = Logger(LoggerFactory.getLogger("hmda-geo-status"))
+  lazy val statusLog = Logger(LoggerFactory.getLogger("hmda-geo-status"))
 
   val statusRoute = {
     path("status") {
@@ -41,7 +30,7 @@ trait StatusRoute extends PipJsonProtocol {
             val now = Instant.now.toString
             val host = InetAddress.getLocalHost.getHostName
             val status = Status("OK", "hmda-geo", now, host)
-            log.debug(status.toJson.toString())
+            statusLog.debug(status.toJson.toString())
             ToResponseMarshallable(status)
           }
         }

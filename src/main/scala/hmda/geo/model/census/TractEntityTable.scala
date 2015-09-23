@@ -22,7 +22,7 @@ trait TractEntityTable extends DatabaseConfig {
     intptlat: String,
     intptlon: String)
 
-  class Tracts(tag: Tag) extends GeometryTable[TractEntity](tag, "tl_2015_tract") {
+  class Tracts(tag: Tag) extends GeometryTable[TractEntity](tag, "tl_2014_tract") {
     def statefp = column[String]("statefp")
     def countyfp = column[String]("countyfp")
     def tractce = column[String]("tractce")
