@@ -7,25 +7,38 @@ import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._
 import hmda.geo.api.routes.BaseRoute
 import hmda.geo.protocol.PipJsonProtocol
+import hmda.geo.protocol.census.TractJsonProtocol
 import hmda.geo.service.TractService
 import org.slf4j.LoggerFactory
 import com.typesafe.scalalogging.Logger
 import geometry.Point
 
-trait TractRoute extends BaseRoute with PipJsonProtocol {
+trait TractRoute extends BaseRoute with PipJsonProtocol with TractJsonProtocol {
 
   lazy val tractLog = Logger(LoggerFactory.getLogger("hmda-geo-census-tract"))
 
   val tractRoute = {
-    path("tract") {
-      parameters('latitude.as[Double], 'longitude.as[Double]) { (lat, lon) =>
-        encodeResponseWith(NoCoding, Gzip, Deflate) {
-          complete {
-            val p = Point(lon, lat, 4326)
-            TractService.containsPoint(p)
+    pathPrefix("tract") {
+      path("pip") {
+        parameters('latitude.as[Double], 'longitude.as[Double]) { (lat, lon) =>
+          encodeResponseWith(NoCoding, Gzip, Deflate) {
+            complete {
+              val p = Point(lon, lat, 4326)
+              TractService.findByPoint(p)
+            }
           }
         }
-      }
+      } ~
+        path("contains") {
+          parameters('latitude.as[Double], 'longitude.as[Double]) { (lat, lon) =>
+            encodeResponseWith(NoCoding, Gzip, Deflate) {
+              complete {
+                val p = Point(lon, lat, 4326)
+                TractService.containsPoint(p)
+              }
+            }
+          }
+        }
     }
   }
 

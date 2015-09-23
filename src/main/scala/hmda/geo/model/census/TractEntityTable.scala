@@ -7,21 +7,6 @@ import hmda.geo.utils.DatabaseConfig
 
 trait TractEntityTable extends DatabaseConfig {
 
-  case class TractEntity(
-    gid: Long,
-    geom: Geometry,
-    statefp: String,
-    countyfp: String,
-    tractce: String,
-    geoid: String,
-    namelsad: String,
-    mtfcc: String,
-    funcstat: String,
-    aland: Double,
-    awater: Double,
-    intptlat: String,
-    intptlon: String)
-
   class Tracts(tag: Tag) extends GeometryTable[TractEntity](tag, "tl_2014_tract") {
     def statefp = column[String]("statefp")
     def countyfp = column[String]("countyfp")

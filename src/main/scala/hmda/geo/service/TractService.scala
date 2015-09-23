@@ -1,6 +1,7 @@
 package hmda.geo.service
 
 import hmda.geo.model.census.TractEntityTable
+import hmda.geo.model.census.TractResult
 import geometry.Point
 import slick.lifted.TableQuery
 import scala.concurrent.{ ExecutionContext, Future }
@@ -14,6 +15,18 @@ trait TractService extends TractEntityTable {
   def containsPoint(p: Point)(implicit ec: ExecutionContext): Future[PipResult] = {
     val q = tracts.filter(c => c.geom.contains(p.jtsGeometry)).map(c => c.gid)
     db.run(q.result).map(r => if (r.size > 0) PipResult(true) else PipResult(false))
+  }
+
+  def findByPoint(p: Point)(implicit ec: ExecutionContext): Future[TractResult] = {
+    val q = tracts.filter(c => c.geom.contains(p.jtsGeometry))
+    db.run(q.result).map { r =>
+      if (r.size > 0) {
+
+        TractResult.empty
+      } else {
+        TractResult.empty
+      }
+    }
   }
 
 }
