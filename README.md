@@ -1,8 +1,8 @@
-# HMDA-pip
+# HMDA-geo
 
 Introduction
 ------------
-HMDA-pip is a service that allows the user to query geographic entities by latitude and longitude, and extract data. 
+HMDA-geo is a collection of services that allow the user to query geographic entities by latitude and longitude, and extract data. 
 
 ## Dependencies
 
