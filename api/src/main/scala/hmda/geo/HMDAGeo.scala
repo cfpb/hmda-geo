@@ -1,6 +1,6 @@
 package hmda.geo
 
-import hmda.geo.api.Service
+import hmda.geo.http.Service
 import akka.actor.ActorSystem
 import akka.event.Logging
 import akka.http.scaladsl.Http

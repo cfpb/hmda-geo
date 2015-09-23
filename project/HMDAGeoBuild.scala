@@ -32,16 +32,27 @@ object PipBuild extends Build {
 
   val deps = akkaDeps ++ Seq(akkaHttp, akkaHttpTestkit, akkaHttpJson, logback, scalaLogging) ++ slickDeps
 
-  lazy val hmdaGeo = (project in file("."))
+  lazy val hmdageo = (project in file(".")).aggregate(api)
+
+  lazy val api = (project in file("api"))
     .configs( IntegrationTest )
     .settings(buildSettings: _*)
     .settings(
       Revolver.settings ++
       Seq(
-        assemblyJarName in assembly := {s"${name.value}"},
+        assemblyJarName in assembly := {s"hmda-geo-${name.value}"},
         libraryDependencies ++= deps,
         resolvers ++= repos
       )
+    )
+
+  lazy val client = (project in file("client"))
+    .settings(buildSettings: _*)
+    .settings(
+      Seq(
+        assemblyJarName in assembly := {s"hmda-geo${name.value}"},
+        resolvers ++= repos
+      )  
     )
   
 

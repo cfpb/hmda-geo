@@ -1,11 +1,11 @@
-package hmda.geo.api.routes.census
+package hmda.geo.http.routes.census
 
 import akka.http.scaladsl.coding.{ Deflate, Gzip, NoCoding }
 import akka.http.scaladsl.marshalling.ToResponseMarshallable
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._
-import hmda.geo.api.routes.BaseRoute
+import hmda.geo.http.routes.BaseRoute
 import hmda.geo.protocol.census.CensusJsonProtocol
 import hmda.geo.service.TractService
 import org.slf4j.LoggerFactory

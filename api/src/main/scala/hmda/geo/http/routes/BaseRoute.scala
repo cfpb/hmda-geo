@@ -1,4 +1,4 @@
-package hmda.geo.api.routes
+package hmda.geo.http.routes
 
 import akka.actor.ActorSystem
 import com.typesafe.config.Config
