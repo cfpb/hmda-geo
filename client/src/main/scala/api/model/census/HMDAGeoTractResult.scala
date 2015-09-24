@@ -1,5 +1,9 @@
 package hmda.geo.client.api.model.census
 
+object HMDAGeoTractResult {
+  def empty: HMDAGeoTractResult = HMDAGeoTractResult("", "", "", "", "", "", "", 0.0, 0.0, "", "")
+}
+
 case class HMDAGeoTractResult(
   statefp: String,
   countyfp: String,
