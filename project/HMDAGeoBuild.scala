@@ -20,7 +20,7 @@ object BuildSettings {
     )
 }
 
-object PipBuild extends Build {
+object HMDAGeoBuild extends Build {
   import Dependencies._
   import BuildSettings._
 
@@ -32,7 +32,9 @@ object PipBuild extends Build {
 
   val deps = akkaDeps ++ Seq(akkaHttp, akkaHttpTestkit, akkaHttpJson, logback, scalaLogging) ++ slickDeps
 
-  lazy val hmdageo = (project in file(".")).aggregate(api)
+  lazy val hmdageo = (project in file("."))
+    .settings(buildSettings: _*)
+    .aggregate(api, client)
 
   lazy val api = (project in file("api"))
     .configs( IntegrationTest )
@@ -40,7 +42,8 @@ object PipBuild extends Build {
     .settings(
       Revolver.settings ++
       Seq(
-        assemblyJarName in assembly := {s"hmda-geo-${name.value}"},
+        name := s"hmda-geo-${name.value}",
+        assemblyJarName in assembly := "hmda-geo-api.jar",
         libraryDependencies ++= deps,
         resolvers ++= repos
       )
@@ -51,7 +54,8 @@ object PipBuild extends Build {
     .settings(buildSettings: _*)
     .settings(
       Seq(
-        assemblyJarName in assembly := {s"hmda-geo${name.value}"},
+        name := s"hmda-geo-${name.value}",
+        assemblyJarName in assembly := "hmda-geo-client.jar",
         libraryDependencies ++= akkaDeps ++ Seq(akkaHttp, akkaHttpTestkit, akkaHttpJson, logback, scalaLogging, jts, scale),
         resolvers ++= repos
       )  
