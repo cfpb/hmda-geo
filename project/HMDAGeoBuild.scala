@@ -47,10 +47,12 @@ object PipBuild extends Build {
     )
 
   lazy val client = (project in file("client"))
+    .configs( IntegrationTest )
     .settings(buildSettings: _*)
     .settings(
       Seq(
         assemblyJarName in assembly := {s"hmda-geo${name.value}"},
+        libraryDependencies ++= akkaDeps ++ Seq(akkaHttp, akkaHttpTestkit, akkaHttpJson, logback, scalaLogging, jts, scale),
         resolvers ++= repos
       )  
     )
