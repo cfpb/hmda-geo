@@ -13,7 +13,8 @@ case class TractResult(
   aland: Double,
   awater: Double,
   intptlat: String,
-  intptlon: String)
+  intptlon: String
+)
 
 object TractResult {
   def empty: TractResult = {

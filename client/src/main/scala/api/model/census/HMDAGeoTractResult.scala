@@ -15,5 +15,6 @@ case class HMDAGeoTractResult(
   aland: Double,
   awater: Double,
   intptlat: String,
-  intptlon: String)
+  intptlon: String
+)
 

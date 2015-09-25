@@ -1,3 +1,5 @@
+# Census Tracts files can be downloaded from the Census Bureau FTP server at ftp://ftp2.census.gov (directory /geo/tiger/TIGER2014/TRACT)
+
 db=gisdb
 schema=public
 table=tl_2014_tract
