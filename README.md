@@ -29,7 +29,7 @@ Please refer to the [installation instructions](http://www.scala-sbt.org/0.13/tu
 ## Project structure
 
 
-## Building $ Running
+## Building & Running
 
 `HMDA-geo` uses [sbt's multi-project builds](http://www.scala-sbt.org/0.13/tutorial/Multi-Project.html),
 each project representing a specific task and usually a [Microservice](http://en.wikipedia.org/wiki/Microservices).
