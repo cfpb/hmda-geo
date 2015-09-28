@@ -24,10 +24,12 @@ From the api directory, build the docker image:
 
 `docker build --rm -t=hmda/geo-api .`
 
-And then run the service linking to the previous container:
+And then run the service linking to a running Postgis container on the same host (in this example, boot2docker):
 
-`docker run --rm --name hmda-geo-api -e PG_HOST=<PostgreSQL Server> -p 8084:8084 --link postgis:postgis hmda/geo-api`
+`docker run --rm --name hmda-geo-api -e PG_HOST=192.168.59.103 -p 8084:8084 --link postgis:postgis hmda/geo-api`
 
 The Postgis host and port are configurable, passing them as environment variables to the docker container. If not specified, the defaults are _localhost_ and _5432_, respectively.
 The database name, user and password are configurable as well (defaults are: _gisdb_, _postgres_, _postgres_ respectively).
+
+For more information about the configuration of the Postgis connection see the configuration file at `src/main/resources/application.conf`
 
