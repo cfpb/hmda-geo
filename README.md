@@ -23,21 +23,15 @@ In addition, you'll need Scala's interactive build tool [sbt](http://www.scala-s
 Please refer to the [installation instructions](http://www.scala-sbt.org/0.13/tutorial/Setup.html) to get going.
 
 ### Postgres & Postgis
-HMDA-pip uses Postgis to perform spatial queries on data. Postgres 9.x with Postgis extension is required. 
+`HMDA-geo` uses Postgis to perform spatial queries on data. Postgres 9.x with Postgis extension is required.
 
-### Docker
-All HMDA services and apps can be built as [Docker](https://docs.docker.com/) images.
-[Docker Compose](https://docs.docker.com/compose/) is also used to simplify local development.
-
-**Note:** Docker is a Linux-only tool.  If you are running on Mac or Windows, you will need
-[boot2docker](http://boot2docker.io/) or a similar Docker VM setup.
 
 ## Project structure
 
 
 ## Building $ Running
 
-`hmda-geo` uses [sbt's multi-project builds](http://www.scala-sbt.org/0.13/tutorial/Multi-Project.html),
+`HMDA-geo` uses [sbt's multi-project builds](http://www.scala-sbt.org/0.13/tutorial/Multi-Project.html),
 each project representing a specific task and usually a [Microservice](http://en.wikipedia.org/wiki/Microservices).
 
 ### Interactive
