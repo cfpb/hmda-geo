@@ -6,6 +6,14 @@ HMDA-geo is a collection of services that allow the user to query geographic ent
 
 ## Dependencies
 
+### Java 8 JDK
+The service layer runs on the Java Virtual Machine (JVM), and requires the Java 8 JDK to build and run the project.
+This project is currenly being built and tested on [Oracle JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+See [Oracle's JDK Install Overview](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)
+for install instructions.
+
+This codebase _should_ also run on OpenJDK 8.
+
 ### Scala
 The HMDA service layer is written in [Scala](http://www.scala-lang.org/).  To build it, you will need to
 [download](http://www.scala-lang.org/download/) and [install](http://www.scala-lang.org/download/install.html)
@@ -24,6 +32,58 @@ All HMDA services and apps can be built as [Docker](https://docs.docker.com/) im
 **Note:** Docker is a Linux-only tool.  If you are running on Mac or Windows, you will need
 [boot2docker](http://boot2docker.io/) or a similar Docker VM setup.
 
+## Project structure
+
+
+## Building $ Running
+
+`hmda-geo` uses [sbt's multi-project builds](http://www.scala-sbt.org/0.13/tutorial/Multi-Project.html),
+each project representing a specific task and usually a [Microservice](http://en.wikipedia.org/wiki/Microservices).
+
+### Interactive
+
+1. Start `sbt`
+
+        $ sbt
+
+2. Select project to build and run
+
+        > projects
+        [info]       api
+        [info]       client
+        [info]     * hmdageo
+
+        > project api
+        [info] Set current project to hmda-geo-api (in build file: /path/to/hmda-geo/)
+
+3. Start the service
+
+    This will retrieve all necessary dependencies, compile Scala source, and
+    start a local server.  It also listens for changes to underlying
+    source code, and auto-deploys to local server.
+
+        > ~re-start
+
+4. Confirm service is up by browsing to `http://localhost:8084/status`.
+
+In order to use the endpoints for geospatial operations, the following environment variables need to be set:
+
+* `PG_DATABASE` : name of the PostgreSQL database
+* `PG_USER`: PostgreSQL user (needs to have relevant permissions on tables to be queried)
+* `PG_PASSWORD`: Password for PostgreSQL user
+
+## Testing client
+
+The API can be tested from the client project on a running system. First, load some data (i.e. census tracts) into a local Postgis database.
+You can use the loading shell scripts in the `scripts` folder (i.e. `load_tract.sh`), adjust variables like database name and schema as appropriate.
+
+From an sbt prompt, change into the client project:
+
+     > project client
+
+And run the integration tests:
+
+     > it:test
 
 ## Getting involved
 
