@@ -1,6 +1,6 @@
 package hmda.geo.http.routes.census
 
-import akka.http.scaladsl.coding.{Deflate, Gzip, NoCoding}
+import akka.http.scaladsl.coding.{ Deflate, Gzip, NoCoding }
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport._
 import akka.http.scaladsl.server.Directives._
 import com.typesafe.scalalogging.Logger
