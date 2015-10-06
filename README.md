@@ -26,7 +26,8 @@ Please refer to the [installation instructions](http://www.scala-sbt.org/0.13/tu
 `HMDA-geo` uses Postgis to perform spatial queries on data. Postgres 9.x with Postgis extension is required.
 
 
-## Project structure
+The scripts in the `scripts` folder contain utilities to load data into Postgis.
+They require the `shp2pgsql` command line tool included with and installation of Postgis as well as the `ogr2ogr` tool, usually installed with `GDAL`
 
 
 ## Building & Running

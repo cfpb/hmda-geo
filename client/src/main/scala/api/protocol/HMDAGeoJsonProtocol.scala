@@ -4,5 +4,5 @@ import spray.json.DefaultJsonProtocol
 import hmda.geo.client.api.model.HMDAGeoStatus
 
 trait HMDAGeoJsonProtocol extends DefaultJsonProtocol {
-  implicit val hmgaGeoStatusFormat = jsonFormat4(HMDAGeoStatus.apply)
+  implicit val hmdaGeoStatusFormat = jsonFormat4(HMDAGeoStatus.apply)
 }
