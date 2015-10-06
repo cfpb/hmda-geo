@@ -1,12 +1,16 @@
 # Census Tracts files can be downloaded from the Census Bureau FTP server at ftp://ftp2.census.gov (directory /geo/tiger/TIGER2014/TRACT)
 
-wget -r ftp://ftp2.census.gov/geo/tiger/TIGER2014/TRACT/
+wget -r ftp://ftp.census.gov/geo/tiger/TIGER2014/TRACT/tl_2014_11_tract.zip
 
 db=gisdb
 schema=public
 table=tl_2014_tract
 
-psql -p 5432 $db -c 'DROP TABLE '"$schema"'.'"$table"''
+psql -p 5432 -c 'CREATE DATABASE gisdb'
+
+psql -p 5432 $db -c "CREATE EXTENSION POSTGIS"
+
+psql -p 5432 $db -c 'DROP TABLE IF EXISTS '"$schema"'.'"$table"''
 
 psql -p 5432 $db -c 'CREATE TABLE tl_2014_tract
 (
@@ -27,6 +31,7 @@ psql -p 5432 $db -c 'CREATE TABLE tl_2014_tract
   CONSTRAINT tl_2014_tract_pkey PRIMARY KEY (gid )
 )'
 
+cd /var/lib/pgsql/ftp.census.gov/geo/tiger/TIGER2014/TRACT
 
 for i in *.zip
   do

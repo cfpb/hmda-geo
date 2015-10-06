@@ -1,0 +1,5 @@
+[opengeo]
+name=opengeo
+baseurl=http://yum.opengeo.org/suite/v4/centos/6/$basearch
+enabled=1
+gpgcheck=0
