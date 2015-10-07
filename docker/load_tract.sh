@@ -1,18 +1,18 @@
 # Census Tracts files can be downloaded from the Census Bureau FTP server at ftp://ftp2.census.gov (directory /geo/tiger/TIGER2014/TRACT)
 
-wget -r ftp://ftp.census.gov/geo/tiger/TIGER2014/TRACT/tl_2014_11_tract.zip
-
 db=gisdb
 schema=public
 table=tl_2014_tract
 
-psql -p 5432 -c 'CREATE DATABASE gisdb'
+service postgresql-9.3 start
 
-psql -p 5432 $db -c "CREATE EXTENSION POSTGIS"
+/bin/su postgres -c "psql -p 5432 -c \"CREATE DATABASE gisdb\""
 
-psql -p 5432 $db -c 'DROP TABLE IF EXISTS '"$schema"'.'"$table"''
+/bin/su postgres -c "psql -p 5432 $db -c \"CREATE EXTENSION POSTGIS\""
 
-psql -p 5432 $db -c 'CREATE TABLE tl_2014_tract
+/bin/su postgres -c "psql -p 5432 $db -c \"DROP TABLE IF EXISTS $table\""
+
+/bin/su postgres -c "psql -p 5432 $db -c \"CREATE TABLE tl_2014_tract
 (
   gid serial NOT NULL,
   statefp character varying(2),
@@ -29,9 +29,7 @@ psql -p 5432 $db -c 'CREATE TABLE tl_2014_tract
   intptlon character varying(12),
   geom geometry(MultiPolygon,4326),
   CONSTRAINT tl_2014_tract_pkey PRIMARY KEY (gid )
-)'
-
-cd /var/lib/pgsql/ftp.census.gov/geo/tiger/TIGER2014/TRACT
+)\""
 
 for i in *.zip
   do
@@ -39,11 +37,13 @@ for i in *.zip
     echo 'Loading' $i 
     unzip -o $i
     ogr2ogr -f "ESRI Shapefile" proj_$x.shp $x.shp -t_srs "EPSG:4326"
-    shp2pgsql -a -s 4326 -W latin1 -g geom proj_$x.shp $schema.$table $db | psql -p 5432 $db
+    shp2pgsql -a -s 4326 -W latin1 -g geom proj_$x.shp $schema.$table $db | /bin/su postgres "-c psql -p 5432 $db"
     rm proj*
   done
 
-psql -p 5432 $db -c 'CREATE INDEX '"$schema"'_gix ON '"$schema"'.'"$table"' USING GIST (geom);'
+/bin/su postgres -c "psql -p 5432 $db -c \"CREATE INDEX $table_gix ON $table USING GIST (geom);\""
 
+
+service postgresql-9.3 stop
 
 

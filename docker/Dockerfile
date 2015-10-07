@@ -38,17 +38,17 @@ EXPOSE 5432
 
 ADD postgis.sv.conf /etc/supervisor/conf.d/
 
-RUN service postgresql-9.3 start 
+RUN wget -r ftp://ftp.census.gov/geo/tiger/TIGER2014/TRACT/
 
-USER postgres
+WORKDIR /ftp.census.gov/geo/tiger/TIGER2014/TRACT
 
 COPY load_tract.sh /var/lib/pgsql/load_tract.sh
 
-#RUN /var/lib/pgsql/load_tract.sh 
+RUN /var/lib/pgsql/load_tract.sh 
 
-USER root
+WORKDIR /
 
-RUN service postgresql-9.3 stop
+RUN rm -rf ftp.census.gov
 
 CMD ["supervisord", "-c", "/etc/supervisor/supervisor.conf"]
 
