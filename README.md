@@ -63,9 +63,11 @@ each project representing a specific task and usually a [Microservice](http://en
 
 In order to use the endpoints for geospatial operations, the following environment variables need to be set:
 
-* `PG_DATABASE` : name of the PostgreSQL database
-* `PG_USER`: PostgreSQL user (needs to have relevant permissions on tables to be queried)
-* `PG_PASSWORD`: Password for PostgreSQL user
+* `PG_HOST`: host running PostgreSQL. Defaults to `localhost`
+* `PG_DATABASE` : name of the PostgreSQL database. Defaults to `gisdb`
+* `PG_PORT`: port where PostgreSQL is running on. Defaults to 5432
+* `PG_USER`: PostgreSQL user (needs to have relevant permissions on tables to be queried). Defaults to `postgres`
+* `PG_PASSWORD`: Password for PostgreSQL user. Defaults to `postgres`
 
 ## Testing client
 
@@ -79,6 +81,11 @@ From an sbt prompt, change into the client project:
 And run the integration tests:
 
      > it:test
+
+## Docker
+
+The software can also be run as a container. See the documentation for the [API](api/README.md) and for the [Postgis databases](docker) that can be used with this service.
+
 
 ## Getting involved
 
