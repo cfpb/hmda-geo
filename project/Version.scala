@@ -1,5 +1,5 @@
 object Version {
-  val akkaHttp        = "1.0"
+  val akkaHttp        = "2.0-M2"
   val scalaTest       = "2.2.1"
   val logback         = "1.1.2"
   val scalaLogging    = "3.1.0"
