@@ -22,6 +22,6 @@ object HMDAGeo extends App with Service {
   )
 
   sys.addShutdownHook {
-    system.shutdown()
+    system.terminate()
   }
 }

@@ -12,7 +12,7 @@ object Dependencies {
   val slickPG         = "com.github.tminglei"         %% "slick-pg"                           % Version.slickPG
   val akkaHttp        = "com.typesafe.akka"           %% "akka-http-experimental"             % Version.akkaHttp
   val akkaHttpJson    = "com.typesafe.akka"           %% "akka-http-spray-json-experimental"  % Version.akkaHttp
-  val akkaHttpTestkit = "com.typesafe.akka"           %% "akka-http-testkit-experimental"     % Version.akkaHttp     % "it, test"
+  val akkaHttpTestkit = "com.typesafe.akka"           %% "akka-http-testkit"                  % Version.akkaHttp     % "it, test"
 
   val jts             = "com.vividsolutions"           % "jts"                                % Version.jts
   val scale           = "com.github.jmarin"           %% "scale-geojson"                      % Version.scale
