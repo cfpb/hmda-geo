@@ -1,13 +1,13 @@
 import sbt._
 import sbt.Keys._
 import com.typesafe.sbt.SbtScalariform._
-import spray.revolver.RevolverPlugin._
+import spray.revolver.RevolverPlugin.autoImport.Revolver
 import sbtassembly.AssemblyPlugin.autoImport._
 
 object BuildSettings {
   val buildOrganization = "cfpb"
   val buildVersion      = "1.0.0"
-  val buildScalaVersion = "2.11.6"
+  val buildScalaVersion = "2.12.3"
 
   val buildSettings = Defaults.coreDefaultSettings ++
     Defaults.itSettings ++
@@ -56,7 +56,7 @@ object HMDAGeoBuild extends Build {
       Seq(
         name := s"hmda-geo-${name.value}",
         assemblyJarName in assembly := "hmda-geo-client.jar",
-        libraryDependencies ++= akkaDeps ++ Seq(akkaHttp, akkaHttpTestkit, akkaHttpJson, logback, scalaLogging, jts, scale),
+        libraryDependencies ++= akkaDeps ++ Seq(akkaHttp, akkaHttpTestkit, akkaHttpJson, logback, jts, scale),
         resolvers ++= repos
       )  
     )
