@@ -2,26 +2,29 @@ package hmda.geo.pg
 
 import com.github.tminglei.slickpg._
 
-trait PostgisDriver extends ExPostgresDriver
+trait PostgisProfile extends ExPostgresProfile
     with PgArraySupport
     with PgDate2Support
-    with PgEnumSupport
     with PgRangeSupport
     with PgHStoreSupport
     with PgSearchSupport
-    with PgPostGISSupport {
+    with PgPostGISSupport
+    with PgNetSupport
+    with PgLTreeSupport {
 
-  override val api = new MyAPI {}
+  override val api = MyAPI
 
-  trait MyAPI extends API
-    with ArrayImplicits
+  object MyAPI extends API with ArrayImplicits
     with DateTimeImplicits
+    with NetImplicits
+    with LTreeImplicits
     with RangeImplicits
     with HStoreImplicits
     with SearchImplicits
     with PostGISImplicits
     with SearchAssistants
+
 }
 
-object PostgisDriver extends PostgisDriver
+object PostgisDriver extends PostgisProfile
 

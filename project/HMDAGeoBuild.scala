@@ -28,7 +28,7 @@ object HMDAGeoBuild extends Build {
 
   val akkaDeps = testDeps ++ Seq(akkaHttp)
 
-  val slickDeps = Seq(slick, slickPG, hikariCP, jts, scale)
+  val slickDeps = Seq(slick, slickPG, slickPGGeom, slickHikariCP, jts, scale)
 
   val deps = akkaDeps ++ Seq(akkaHttp, akkaHttpTestkit, akkaHttpJson, logback, scalaLogging) ++ slickDeps
 

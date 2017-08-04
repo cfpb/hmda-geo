@@ -22,7 +22,7 @@ object HMDAGeoClient extends HMDAGeoServiceClient with HMDAGeoJsonProtocol with 
 
   def status: Future[Either[ResponseError, HMDAGeoStatus]] = {
     implicit val ec: ExecutionContext = system.dispatcher
-    sendGetRequest(Uri("/status")).flatMap { response =>
+    sendGetRequest(Uri("/")).flatMap { response =>
       response.status match {
         case OK => Unmarshal(response.entity).to[HMDAGeoStatus].map(Right(_))
         case _ => sendResponseError(response)
